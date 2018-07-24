@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            NASA
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item (click)="getDetails(date)" *ngFor="let date of dates">
+            {{mydateformat(date)}}
+        </ion-item>
+    </ion-list>
+    <p style="text-align: center">Scroll down for more days</p>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+</ion-content>

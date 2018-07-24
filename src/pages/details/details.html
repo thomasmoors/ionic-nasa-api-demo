@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title style="    float: left;">
+            NASA Details
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="spinner-position" *ngIf="!currentdata.title">
+        <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <ion-card *ngIf="currentdata.title">
+        <ion-card-header class="loader">
+            <img [src]="trustSrc(currentdata.type,currentdata.url)" *ngIf="currentdata.media_type==='image'" />
+
+            <div class="row zero-padding" class="zero-padding" *ngIf="currentdata.media_type==='video'">
+                <div class="col zero-padding" class="zero-padding">
+                    <div class="video-container">
+                        <iframe [src]="trustSrc(currentdata.type,currentdata.url)" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-card-title>
+                {{currentdata.title}}
+            </ion-card-title>
+            <h2>
+                {{copyright(currentdata.media_type,currentdata.copyright)}} <br> Date : {{currentdata.date}}
+                <hr>
+            </h2>
+            <p>
+                {{currentdata.explanation}}
+            </p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
